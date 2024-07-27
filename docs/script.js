@@ -1,4 +1,4 @@
-const apiEndpoint = 'https://nova.gemini-3h.subspace.network/api';
+const apiEndpoint = 'https://nova.gemini-3h.subspace.network/api/v1';
 const latestBlockContainer = document.getElementById('latest-block');
 
 async function getLatestBlock() {
