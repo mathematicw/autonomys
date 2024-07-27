@@ -6,6 +6,11 @@ async function getLatestBlock() {
     console.log('Making API request...');
     const response = await fetch(`${apiEndpoint}/blocks/latest`);
     console.log('API response:', response);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
     const latestBlock = await response.json();
     console.log('Latest block data:', latestBlock);
 
@@ -28,5 +33,5 @@ async function getLatestBlock() {
   }
 }
 
-// Call the function to fetch and display the latest block TEST-Cancel
+// Call the function to fetch and display the latest block
 getLatestBlock();
