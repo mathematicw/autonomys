@@ -1,4 +1,4 @@
-const apiEndpoint = 'https://api.subspace.network/api';
+const apiEndpoint = 'https://rpc-1.gemini-3h.subspace.network/ws';
 
 async function getLatestBlock() {
   try {
