@@ -1,13 +1,12 @@
-const apiEndpoint = 'https://rpc-1.gemini-3h.subspace.network/ws';
-const latestBlockContainer = document.getElementById('latest-block');
+const apiEndpoint = 'https://api.subspace.network/api/v1/blocks/latest';
 
 async function getLatestBlock() {
   try {
-    const response = await fetch(`${apiEndpoint}/blocks/latest`);
+    const response = await fetch(apiEndpoint);
     const latestBlock = await response.json();
 
     // Extract the fields you want to display
-    const blockNumber = latestBlock.block_number;
+    const blockNumber = latestBlock.number;
     const timestamp = latestBlock.timestamp;
     const transactions = latestBlock.transactions;
 
@@ -26,5 +25,3 @@ async function getLatestBlock() {
   }
 }
 
-// Call the function to fetch and display the latest block
-getLatestBlock();
