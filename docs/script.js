@@ -29,4 +29,3 @@ async function getLatestBlock() {
 
 // Call the function to fetch and display the latest block
 getLatestBlock();
-
