@@ -28,5 +28,5 @@ async function getLatestBlock() {
   }
 }
 
-// Call the function to fetch and display the latest block
+// Call the function to fetch and display the latest block TEST-Cancel
 getLatestBlock();
