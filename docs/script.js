@@ -1,4 +1,4 @@
-const apiEndpoint = 'https://explorer-0.gemini-3h.subspace.network/graphql';
+const apiEndpoint = 'https://nova.gemini-3h.subspace.network/api';
 const latestBlockContainer = document.getElementById('latest-block');
 
 async function getLatestBlock() {
