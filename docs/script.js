@@ -1,4 +1,4 @@
-const apiEndpoint = 'https://api.subspace.network/api/v1/blocks/latest';
+const apiEndpoint = 'https://api.subspace.network/api';
 
 async function getLatestBlock() {
   try {
