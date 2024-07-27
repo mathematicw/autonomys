@@ -4,7 +4,7 @@ const latestBlockContainer = document.getElementById('latest-block');
 async function getLatestBlock() {
   try {
     console.log('Making API request...');
-    const response = await fetch(`${apiEndpoint}?module=block&action=getblock&block=latest`);
+    const response = await fetch(`${apiEndpoint}/blocks/latest`);
     console.log('API response:', response);
     const latestBlock = await response.json();
     console.log('Latest block data:', latestBlock);
