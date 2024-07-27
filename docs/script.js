@@ -1,4 +1,4 @@
-const apiEndpoint = 'https://subspacethingy.ifhya.com';
+const apiEndpoint = 'https://explorer-0.gemini-3h.subspace.network/graphql';
 const latestBlockContainer = document.getElementById('latest-block');
 
 async function getLatestBlock() {
