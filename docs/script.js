@@ -3,20 +3,21 @@ const latestBlockContainer = document.getElementById('latest-block');
 
 async function getLatestBlock() {
   try {
+    console.log('Making API request...');
     const response = await fetch(`${apiEndpoint}?module=blocks&action=getblockbynumber&blocknumber=latest`);
+    console.log('API response:', response);
     const latestBlock = await response.json();
+    console.log('Latest block data:', latestBlock);
 
     // Extract the fields you want to display
     const blockNumber = latestBlock.block_number;
     const timestamp = latestBlock.timestamp;
-    const transactions = latestBlock.transactions;
 
     // Create the HTML content
     const html = `
       <h2>Latest Block</h2>
       <p>Block Number: ${blockNumber}</p>
       <p>Timestamp: ${timestamp}</p>
-      <p>Transactions: ${transactions.length}</p>
     `;
 
     // Update the container with the latest block information
