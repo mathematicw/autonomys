@@ -1,4 +1,4 @@
-const apiEndpoint = 'subspace.api.subscan.io';
+const apiEndpoint = 'wss://rpc-1.gemini-3h.subspace.network/ws';
 const latestBlockContainer = document.getElementById('latest-block');
 
 async function getLatestBlock() {
