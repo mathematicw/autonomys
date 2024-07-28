@@ -1,9 +1,9 @@
-const rpcUrl = 'https://nova-0.gemini-3h.subspace.network/ws';
+const rpcEndpoint = 'https://nova.gemini-3h.subspace.network/ws';
 const latestBlockContainer = document.getElementById('latest-block');
 
 async function getLatestBlock() {
   try {
-    const socket = new WebSocket(rpcUrl);
+    const socket = new WebSocket(rpcEndpoint);
 
     socket.onopen = () => {
       console.log('WebSocket connection established!');
