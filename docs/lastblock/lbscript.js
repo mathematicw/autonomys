@@ -7,10 +7,10 @@ async function getLatestBlock() {
 
     socket.onopen = () => {
       console.log('WebSocket connection established!');
-      // Request the latest block hash
+      // Request the header of the latest block
       socket.send(JSON.stringify({
         "jsonrpc": "2.0",
-        "method": "chain_getBlockHash",
+        "method": "chain_getHeader",
         "params": [],
         "id": 1
       }));
@@ -28,7 +28,7 @@ async function getLatestBlock() {
 
       // Handle the response based on the request id
       if (response.id === 1) {
-        const latestBlockHash = response.result;
+        const latestBlockHash = response.result.hash;
         // Request the latest block using the latest block hash
         socket.send(JSON.stringify({
           "jsonrpc": "2.0",
@@ -57,7 +57,7 @@ async function getLatestBlock() {
 }
 
 function displayLatestBlock(block) {
-  const blockNumber = block.block.header.number;
+  const blockNumber = parseInt(block.block.header.number, 16); // Parse hex to integer
   const blockHash = block.block.header.hash;
   const parentHash = block.block.header.parentHash;
   const stateRoot = block.block.header.stateRoot;
