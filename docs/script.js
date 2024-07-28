@@ -18,7 +18,7 @@ async function getLatestBlock() {
     socket.onmessage = (event) => {
       console.log('Received message:', event.data);
       const response = JSON.parse(event.data);
-
+    
       if (response.error) {
         console.error('Error:', response.error);
         latestBlockContainer.innerHTML = `Error: ${response.error.message}`;
@@ -31,6 +31,7 @@ async function getLatestBlock() {
           "id": 2
         }));
       } else if (response.id === 2) {
+        console.log('Response from chain_getBlock:', event.data);
         const latestBlock = response.result;
         const blockNumber = latestBlock.block.header.number;
         const timestamp = latestBlock.block.header.timestamp;
