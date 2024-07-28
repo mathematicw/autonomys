@@ -7,10 +7,10 @@ async function getLatestBlock() {
 
     socket.onopen = () => {
       console.log('WebSocket connection established!');
-      // Request the latest block hash
+      // Request the hash of the latest finalized block
       socket.send(JSON.stringify({
         "jsonrpc": "2.0",
-        "method": "chain_getBlockHash",
+        "method": "chain_getFinalizedHead",
         "params": [],
         "id": 1
       }));
