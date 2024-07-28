@@ -1,4 +1,5 @@
-const rpcEndpoint = 'https://nova.gemini-3h.subspace.network/ws';
+const WebSocket = require('ws');
+const rpcEndpoint = 'wss://nova.gemini-3h.subspace.network/ws';
 const latestBlockContainer = document.getElementById('latest-block');
 
 async function getLatestBlock() {
