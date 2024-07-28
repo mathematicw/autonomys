@@ -43,7 +43,6 @@ async function getLatestBlock() {
       }
     };
 
-
     socket.onerror = (error) => {
       console.error('Error occurred:', error);
       latestBlockContainer.innerHTML = `Error: ${error.message}`;
@@ -51,7 +50,6 @@ async function getLatestBlock() {
 
     socket.onclose = () => {
       console.log('WebSocket connection closed!');
-      latestBlockContainer.innerHTML = 'WebSocket connection closed!';
     };
   } catch (error) {
     console.error('Error fetching latest block:', error);
