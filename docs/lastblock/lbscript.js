@@ -57,11 +57,24 @@ async function getLatestBlock() {
 }
 
 function displayLatestBlock(block) {
-  const blockNumber = parseInt(block.block.header.number, 16); // Parse hex to integer
-  const blockHash = block.block.header.hash;
-  const parentHash = block.block.header.parentHash;
-  const stateRoot = block.block.header.stateRoot;
-  const extrinsicsRoot = block.block.header.extrinsicsRoot;
+  // Parsing block number and handling potential errors
+  const blockNumber = parseInt(block.block.header.number, 16);
+  const blockHash = block.block.header.hash || 'N/A';
+  const parentHash = block.block.header.parentHash || 'N/A';
+  const stateRoot = block.block.header.stateRoot || 'N/A';
+  const extrinsicsRoot = block.block.header.extrinsicsRoot || 'N/A';
+  const extrinsics = block.block.extrinsics || [];
+
+  let extrinsicsHTML = '';
+  if (extrinsics.length > 0) {
+    extrinsicsHTML = '<ul>';
+    extrinsics.forEach((ext, index) => {
+      extrinsicsHTML += `<li>Extrinsic ${index + 1}: ${ext}</li>`;
+    });
+    extrinsicsHTML += '</ul>';
+  } else {
+    extrinsicsHTML = '<p>No extrinsics found in this block.</p>';
+  }
 
   const html = `
     <h2>Latest Block</h2>
@@ -70,6 +83,8 @@ function displayLatestBlock(block) {
     <p><strong>Parent Hash:</strong> ${parentHash}</p>
     <p><strong>State Root:</strong> ${stateRoot}</p>
     <p><strong>Extrinsics Root:</strong> ${extrinsicsRoot}</p>
+    <h3>Extrinsics:</h3>
+    ${extrinsicsHTML}
   `;
   latestBlockContainer.innerHTML = html;
 }
