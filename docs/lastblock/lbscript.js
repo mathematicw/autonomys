@@ -1,5 +1,4 @@
-const WebSocket = require('ws');
-const rpcEndpoint = 'wss://nova.gemini-3h.subspace.network/ws';
+const rpcEndpoint = 'wss://rpc-0.gemini-3h.subspace.network/ws';
 const latestBlockContainer = document.getElementById('latest-block');
 
 async function getLatestBlock() {
@@ -8,10 +7,11 @@ async function getLatestBlock() {
 
     socket.onopen = () => {
       console.log('WebSocket connection established!');
+      // Request the latest block hash
       socket.send(JSON.stringify({
         "jsonrpc": "2.0",
-        "method": "subspace_getBlockByNumber",
-        "params": ["latest"],
+        "method": "chain_getBlockHash",
+        "params": [],
         "id": 1
       }));
     };
@@ -19,18 +19,27 @@ async function getLatestBlock() {
     socket.onmessage = (event) => {
       console.log('Received message:', event.data);
       const response = JSON.parse(event.data);
-      const latestBlock = response.result;
 
-      const blockNumber = latestBlock.block_number;
-      const timestamp = latestBlock.timestamp;
+      if (response.error) {
+        console.error('Error:', response.error);
+        latestBlockContainer.innerHTML = `Error: ${response.error.message}`;
+        return;
+      }
 
-      const html = `
-        <h2>Latest Block</h2>
-        <p>Block Number: ${blockNumber}</p>
-        <p>Timestamp: ${timestamp}</p>
-      `;
-
-      latestBlockContainer.innerHTML = html;
+      // Handle the response based on the request id
+      if (response.id === 1) {
+        const latestBlockHash = response.result;
+        // Request the latest block using the latest block hash
+        socket.send(JSON.stringify({
+          "jsonrpc": "2.0",
+          "method": "chain_getBlock",
+          "params": [latestBlockHash],
+          "id": 2
+        }));
+      } else if (response.id === 2) {
+        const block = response.result;
+        displayLatestBlock(block);
+      }
     };
 
     socket.onerror = (error) => {
@@ -45,6 +54,24 @@ async function getLatestBlock() {
     console.error('Error fetching latest block:', error);
     latestBlockContainer.innerHTML = `Error: ${error.message}`;
   }
+}
+
+function displayLatestBlock(block) {
+  const blockNumber = block.block.header.number;
+  const blockHash = block.block.header.hash;
+  const parentHash = block.block.header.parentHash;
+  const stateRoot = block.block.header.stateRoot;
+  const extrinsicsRoot = block.block.header.extrinsicsRoot;
+
+  const html = `
+    <h2>Latest Block</h2>
+    <p><strong>Block Number:</strong> ${blockNumber}</p>
+    <p><strong>Block Hash:</strong> ${blockHash}</p>
+    <p><strong>Parent Hash:</strong> ${parentHash}</p>
+    <p><strong>State Root:</strong> ${stateRoot}</p>
+    <p><strong>Extrinsics Root:</strong> ${extrinsicsRoot}</p>
+  `;
+  latestBlockContainer.innerHTML = html;
 }
 
 getLatestBlock();
