@@ -1,19 +1,49 @@
-axios.get('https://nova.gemini-3h.subspace.network/api')
-  .then(response => {
-    if (response.status === 200) {
-      const blocks = response.data.blocks;
-      const lastBlock = blocks[blocks.length - 1];
-      displayLastBlock(lastBlock);
-    } else {
-      console.error('Failed to retrieve blockchain data');
-    }
-  })
-  .catch(error => {
-    console.error('An error occurred:', error);
-  });
+const rpcUrl = 'https://nova-0.gemini-3h.subspace.network/ws';
+const latestBlockContainer = document.getElementById('latest-block');
 
-function displayLastBlock(lastBlock) {
-  const lastBlockElement = document.getElementById('lastBlock');
-  const formattedLastBlock = JSON.stringify(lastBlock, null, 2);
-  lastBlockElement.textContent = formattedLastBlock;
+async function getLatestBlock() {
+  try {
+    const socket = new WebSocket(rpcUrl);
+
+    socket.onopen = () => {
+      console.log('WebSocket connection established!');
+      socket.send(JSON.stringify({
+        "jsonrpc": "2.0",
+        "method": "subspace_getBlockByNumber",
+        "params": ["latest"],
+        "id": 1
+      }));
+    };
+
+    socket.onmessage = (event) => {
+      console.log('Received message:', event.data);
+      const response = JSON.parse(event.data);
+      const latestBlock = response.result;
+
+      const blockNumber = latestBlock.block_number;
+      const timestamp = latestBlock.timestamp;
+
+      const html = `
+        <h2>Latest Block</h2>
+        <p>Block Number: ${blockNumber}</p>
+        <p>Timestamp: ${timestamp}</p>
+      `;
+
+      latestBlockContainer.innerHTML = html;
+    };
+
+    socket.onerror = (error) => {
+      console.error('Error occurred:', error);
+      latestBlockContainer.innerHTML = `Error: ${error.message}`;
+    };
+
+    socket.onclose = () => {
+      console.log('WebSocket connection closed!');
+    };
+  } catch (error) {
+    console.error('Error fetching latest block:', error);
+    latestBlockContainer.innerHTML = `Error: ${error.message}`;
+  }
 }
+
+getLatestBlock();
