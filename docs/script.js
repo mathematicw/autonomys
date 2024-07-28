@@ -9,7 +9,7 @@ async function getLatestBlock() {
       console.log('WebSocket connection established!');
       socket.send(JSON.stringify({
         "jsonrpc": "2.0",
-        "method": "getblock",
+        "method": "chain_getBlock",
         "params": ["latest"],
         "id": 1
       }));
@@ -24,8 +24,8 @@ async function getLatestBlock() {
         latestBlockContainer.innerHTML = `Error: ${response.error.message}`;
       } else {
         const latestBlock = response.result;
-        const blockNumber = latestBlock.header.number;
-        const timestamp = latestBlock.header.timestamp;
+        const blockNumber = latestBlock.block.header.number;
+        const timestamp = latestBlock.block.header.timestamp;
 
         const html = `
           <h2>Latest Block</h2>
