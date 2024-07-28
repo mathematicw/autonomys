@@ -57,32 +57,38 @@ async function getLatestBlock() {
 }
 
 function displayLatestBlock(block) {
-  // Parsing block number and handling potential errors
-  const blockNumber = parseInt(block.block.header.number, 16);
-  const blockHash = block.block.header.hash || 'N/A';
+  const blockNumber = parseInt(block.block.header.number, 16); // Parse hex to integer
   const parentHash = block.block.header.parentHash || 'N/A';
   const stateRoot = block.block.header.stateRoot || 'N/A';
   const extrinsicsRoot = block.block.header.extrinsicsRoot || 'N/A';
+  const digestLogs = block.block.header.digest.logs || [];
   const extrinsics = block.block.extrinsics || [];
 
-  let extrinsicsHTML = '';
-  if (extrinsics.length > 0) {
-    extrinsicsHTML = '<ul>';
-    extrinsics.forEach((ext, index) => {
-      extrinsicsHTML += `<li>Extrinsic ${index + 1}: ${ext}</li>`;
-    });
-    extrinsicsHTML += '</ul>';
-  } else {
-    extrinsicsHTML = '<p>No extrinsics found in this block.</p>';
-  }
+  // Format digest logs and extrinsics
+  const digestLogsHTML = digestLogs.length > 0
+    ? `<ul>${digestLogs.map(log => `<li>${log}</li>`).join('')}</ul>`
+    : '<p>No digest logs found in this block.</p>';
+  const extrinsicsHTML = extrinsics.length > 0
+    ? `<ul>${extrinsics.map((ext, index) => `<li>Extrinsic ${index + 1}: ${ext}</li>`).join('')}</ul>`
+    : '<p>No extrinsics found in this block.</p>';
 
   const html = `
-    <h2>Latest Block</h2>
-    <p><strong>Block Number:</strong> ${blockNumber}</p>
-    <p><strong>Block Hash:</strong> ${blockHash}</p>
-    <p><strong>Parent Hash:</strong> ${parentHash}</p>
-    <p><strong>State Root:</strong> ${stateRoot}</p>
-    <p><strong>Extrinsics Root:</strong> ${extrinsicsRoot}</p>
+    <div class="block-info">
+      <div>
+        <p><strong>Block Number:</strong> ${blockNumber}</p>
+      </div>
+      <div>
+        <p><strong>Parent Hash:</strong> ${parentHash}</p>
+      </div>
+      <div>
+        <p><strong>State Root:</strong> ${stateRoot}</p>
+      </div>
+      <div>
+        <p><strong>Extrinsics Root:</strong> ${extrinsicsRoot}</p>
+      </div>
+    </div>
+    <h3>Digest Logs:</h3>
+    ${digestLogsHTML}
     <h3>Extrinsics:</h3>
     ${extrinsicsHTML}
   `;
