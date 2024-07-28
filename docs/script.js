@@ -8,6 +8,8 @@ async function getLatestBlock() {
     console.log('API response:', response);
 
     if (!response.ok) {
+      const errorData = await response.json();
+      console.error('Error data:', errorData);
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
