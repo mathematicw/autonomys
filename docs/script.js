@@ -20,7 +20,11 @@ async function getLatestBlock() {
 
       if (event.data.startsWith('#img-representation-')) {
         console.log('Received block data:', event.data);
-        latestBlockContainer.innerHTML = event.data;
+        const html = `
+          <h2>Latest Block</h2>
+          <p>${event.data}</p>
+        `;
+        latestBlockContainer.innerHTML = html;
       } else {
         const response = JSON.parse(event.data);
 
