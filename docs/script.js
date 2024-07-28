@@ -9,8 +9,8 @@ async function getLatestBlock() {
       console.log('WebSocket connection established!');
       socket.send(JSON.stringify({
         "jsonrpc": "2.0",
-        "method": "chain_getBlock",
-        "params": ["latest"],
+        "method": "chain_getBlockHash",
+        "params": [],
         "id": 1
       }));
     };
@@ -22,7 +22,15 @@ async function getLatestBlock() {
       if (response.error) {
         console.error('Error:', response.error);
         latestBlockContainer.innerHTML = `Error: ${response.error.message}`;
-      } else {
+      } else if (response.id === 1) {
+        const blockHash = response.result;
+        socket.send(JSON.stringify({
+          "jsonrpc": "2.0",
+          "method": "chain_getBlock",
+          "params": [blockHash],
+          "id": 2
+        }));
+      } else if (response.id === 2) {
         const latestBlock = response.result;
         const blockNumber = latestBlock.block.header.number;
         const timestamp = latestBlock.block.header.timestamp;
