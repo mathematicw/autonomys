@@ -10,7 +10,7 @@ async function getLatestBlock() {
       socket.send(JSON.stringify({
         "jsonrpc": "2.0",
         "method": "chain_getBlockHash",
-        "params": [0],
+        "params": ["0x0"],
         "id": 1
       }));
     };
