@@ -9,7 +9,7 @@ async function getLatestBlock() {
       console.log('WebSocket connection established!');
       socket.send(JSON.stringify({
         "jsonrpc": "2.0",
-        "method": "subspace_getBlockByNumber",
+        "method": "getblock",
         "params": ["latest"],
         "id": 1
       }));
@@ -18,18 +18,23 @@ async function getLatestBlock() {
     socket.onmessage = (event) => {
       console.log('Received message:', event.data);
       const response = JSON.parse(event.data);
-      const latestBlock = response.result;
 
-      const blockNumber = latestBlock.block_number;
-      const timestamp = latestBlock.timestamp;
+      if (response.error) {
+        console.error('Error:', response.error);
+        latestBlockContainer.innerHTML = `Error: ${response.error.message}`;
+      } else {
+        const latestBlock = response.result;
+        const blockNumber = latestBlock.header.number;
+        const timestamp = latestBlock.header.timestamp;
 
-      const html = `
-        <h2>Latest Block</h2>
-        <p>Block Number: ${blockNumber}</p>
-        <p>Timestamp: ${timestamp}</p>
-      `;
+        const html = `
+          <h2>Latest Block</h2>
+          <p>Block Number: ${blockNumber}</p>
+          <p>Timestamp: ${timestamp}</p>
+        `;
 
-      latestBlockContainer.innerHTML = html;
+        latestBlockContainer.innerHTML = html;
+      }
     };
 
     socket.onerror = (error) => {
