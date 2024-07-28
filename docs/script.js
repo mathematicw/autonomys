@@ -3,13 +3,15 @@ const latestBlockContainer = document.getElementById('latest-block');
 
 async function getLatestBlock() {
   try {
-    const response = await fetch(`${apiEndpoint}/blocks/latest`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      }
-    });
+    const response = await fetch(`${apiEndpoint}/blocks/latest`);
+    console.log('API response:', response);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
     const latestBlock = await response.json();
+    console.log('Latest block data:', latestBlock);
 
     const blockNumber = latestBlock.block_number;
     const timestamp = latestBlock.timestamp;
