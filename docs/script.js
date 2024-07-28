@@ -1,5 +1,4 @@
-const WebSocket = require('ws');
-const rpcEndpoint = 'wss://nova.gemini-3h.subspace.network/ws';
+const rpcEndpoint = 'wss://rpc-0.gemini-3h.subspace.network/ws';
 const latestBlockContainer = document.getElementById('latest-block');
 
 async function getLatestBlock() {
@@ -40,6 +39,7 @@ async function getLatestBlock() {
 
     socket.onclose = () => {
       console.log('WebSocket connection closed!');
+      latestBlockContainer.innerHTML = 'WebSocket connection closed!';
     };
   } catch (error) {
     console.error('Error fetching latest block:', error);
