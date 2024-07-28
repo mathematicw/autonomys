@@ -1,10 +1,7 @@
-const apiEndpoint = 'https://nova.gemini-3h.subspace.network/api/v1';
-const latestBlockContainer = document.getElementById('latest-block');
-
 async function getLatestBlock() {
   try {
     console.log('Making API request...');
-    const response = await fetch(`${apiEndpoint}/blocks/latest`);
+    const response = await fetch(`${apiEndpoint}/blocks/latest?module=block&action=getblockcount`);
     console.log('API response:', response);
 
     if (!response.ok) {
@@ -34,6 +31,3 @@ async function getLatestBlock() {
     latestBlockContainer.innerHTML = `Error: ${error.message}`;
   }
 }
-
-// Call the function to fetch and display the latest block
-getLatestBlock();
