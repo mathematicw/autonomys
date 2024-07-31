@@ -4,31 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Latest Block</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     :root {
-      --bg-color: #2C3E50;
-      --header-bg: #3558a5;
-      --header-color: rgb(182, 176, 214);
+      --bg-color: #4e471d;
+      --header-bg: #1b1b15;
+      --text-color: #ffffff;
       --block-bg: #34495E;
-      --block-color: rgb(19, 20, 77);
-      --header-text: #ECF0F1;
-      --paragraph-text: #eedf14;
-      --list-text: #f0e7c0;
+      --block-border: #ddd;
       --info-bg: #2C3E50;
-      --border-color: #140086;
+      --link-color: #3498db;
     }
 
     .light-mode {
-      --bg-color: #F0F0F0;
-      --header-bg: #4A69BD;
-      --header-color: #FFFFFF;
-      --block-bg: #FFFFFF;
-      --block-color: #333333;
-      --header-text: #333333;
-      --paragraph-text: #555555;
-      --list-text: #444444;
-      --info-bg: #E8E8E8;
-      --border-color: #CCCCCC;
+      --bg-color: #f4f4f4;
+      --header-bg: #333333;
+      --text-color: #333333;
+      --block-bg: #ffffff;
+      --block-border: #cccccc;
+      --info-bg: #e8e8e8;
+      --link-color: #2980b9;
     }
 
     body {
@@ -36,76 +31,38 @@
       background-color: var(--bg-color);
       margin: 0;
       padding: 0;
+      color: var(--text-color);
       transition: background-color 0.3s ease;
     }
 
     header {
       background-color: var(--header-bg);
-      color: var(--header-color);
-      text-align: center;
+      color: white;
       padding: 1em 0;
-      position: relative;
-    }
-
-    #latest-block {
-      width: 90%;
+    : space-between;
+      align-items: center;
       max-width: 1200px;
-      margin: 20px auto;
-      padding: 
-      border: 1px solid var(--border-color);
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      background-color: var(--block-bg);
-      color: var(--block-color);
+      margin: 0 auto;
+      padding: 0 20px;
     }
 
-    h2, h3 {
-      color: var(--header-text);
-      word-wrap: break-word;
-    }
-
-    p {
-      color: var(--paragraph-text);
-      font-size: 1.1em;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-    }
-
-    ul {
-      padding-left: 20px;
-      list-style-type: disc;
-    }
-
-    li {
-      color: var(--list-text);
-      margin-bottom: 5px;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-    }
-
-    .block-info {
+    nav ul-style-type: none;
+      padding: 0;
       display: flex;
-      flex-wrap: wrap;
     }
 
-    .block-info div {
-      flex: 1 1 100%;
-      margin: 10px 0;
-      padding: 10px;
-      border: 1px solid var(--border-color);
-      border-radius: 5px;
-      background-color: var(--info-bg);
-      word-break: break-all;
+    nav ul li {
+      margin-right: 20px;
     }
 
-    .block-info div p {
-      margin: 0;
+    nav ul li a {
+      color: white;
+      text-decoration: none;
     }
 
     #mode-switch {
-      position: absolute;
-      top: 10px;
-      right: 10px;
+      display: flex;
+      align-items: center;
     }
 
     .switch {
@@ -113,6 +70,7 @@
       display: inline-block;
       width: 60px;
       height: 34px;
+      margin-left: 10px;
     }
 
     .switch input {
@@ -146,11 +104,70 @@
     }
 
     input:checked + .slider {
-       #2196F3;
+      background-color: #2196F3;
     }
 
     input:checked + .slider:before {
       transform: translateX(26px);
+    }
+
+    #latest-block {
+      width: 90%;
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+      border: 1px solid var(--block-border);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: var(--block-bg);
+    }
+
+    h1, h2, h3 {
+      color: var(--text-color);
+    }
+
+    p {
+      color: var(--text-color);
+      font-size: 1.1em;
+    }
+
+    ul {
+      padding-left: 20px;
+      list-style-type: disc;
+    }
+
+    li {
+      color: var(--text-color);
+      margin-bottom: 5px;
+    }
+
+    .block- {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .block-info div {
+      flex: 1 1 100%;
+      margin: 10px 0;
+      padding: 15px;
+      border: 1px solid var(--block-border);
+      border-radius: 5px;
+      background-color: var(--info-bg);
+    }
+
+    footer {
+      background-color: var(--header-bg);
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 40px;
+    }
+
+    .social-links a {
+      color: white;
+      font-size: 24px;
+      margin: 0 10px;
+      text-decoration: none;
     }
 
     @media (min-width: 768px) {
@@ -163,19 +180,40 @@
 </head>
 <body>
   <header>
-    <h1>Latest Block Information</h1>
-    <div id="mode-switch">
-      <label class="switch">
-        <input type="checkbox" id="theme-toggle">
-        <span class="slider"></span>
-      </label>
-    </div>
+    <nav>
+      <ul>
+        <li><a href="https://blocklab.space/lastblock/lb.html">Latest Block</a></li>
+        <li><a href="#">Menu Item 2</a></li>
+        <li><a href="#">Menu Item 3</a></li>
+        <li><a href="#">Menu Item 4</a></li>
+        <li><a href="#">Menu Item 5</a></li>
+        <li><a href="#">Menu Item 6</a></li>
+      </ul>
+      <div id="mode-switch">
+        <span>Dark</span>
+        <label class="switch">
+          <input type="checkbox" id="theme-toggle">
+          <span class="slider"></span>
+        </label>
+        <span>Light</span>
+      </div>
+    </nav>
   </header>
+
   <div id="latest-block">
+    <h1>Latest Block Information</h1>
     <h2>Loading latest block...</h2>
   </div>
 
-  <script src="lbscript.js"></script>
+  <footer>
+    <div class="social-links">
+      <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="#" target="_blank"> fa-telegram"></i></a>
+      <a href="#" target="_blank"><i class="fab fa-discord"></i></a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
   <script>
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
