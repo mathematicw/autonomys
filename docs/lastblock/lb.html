@@ -1,76 +1,192 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Latest Block</title>
   <style>
+    :root {
+      --bg-color: #2C3E50;
+      --header-bg: #3558a5;
+      --header-color: rgb(182, 176, 214);
+      --block-bg: #34495E;
+      --block-color: rgb(19, 20, 77);
+      --header-text: #ECF0F1;
+      --paragraph-text: #eedf14;
+      --list-text: #f0e7c0;
+      --info-bg: #2C3E50;
+      --border-color: #140086;
+    }
+
+    .light-mode {
+      --bg-color: #F0F0F0;
+      --header-bg: #4A69BD;
+      --header-color: #FFFFFF;
+      --block-bg: #FFFFFF;
+      --block-color: #333333;
+      --header-text: #333333;
+      --paragraph-text: #555555;
+      --list-text: #444444;
+      --info-bg: #E8E8E8;
+      --border-color: #CCCCCC;
+    }
+
     body {
       font-family: Arial, sans-serif;
-      background-color: #2C3E50;
+      background-color: var(--bg-color);
       margin: 0;
       padding: 0;
+      transition: background-color 0.3s ease;
     }
+
     header {
-      background-color: #3558a5;
-      color: rgb(182, 176, 214);
+      background-color: var(--header-bg);
+      color: var(--header-color);
       text-align: center;
       padding: 1em 0;
+      position: relative;
     }
+
     #latest-block {
-      width: 80%;
-      margin: 40px auto;
-      padding: 20px;
-      border: 1px solid #140086;
+      width: 90%;
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 
+      border: 1px solid var(--border-color);
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      background-color: #34495E;
-      color: rgb(19, 20, 77);
+      background-color: var(--block-bg);
+      color: var(--block-color);
     }
+
     h2, h3 {
-      color: #ECF0F1;
-      word-wrap: break-word; /* Added: Allows long words to break */
+      color: var(--header-text);
+      word-wrap: break-word;
     }
+
     p {
-      color: #eedf14;
+      color: var(--paragraph-text);
       font-size: 1.1em;
-      word-wrap: break-word; /* Added: Allows long words to break */
-      overflow-wrap: break-word; /* Added: Ensures words break to prevent overflow */
+      word-wrap: break-word;
+      overflow-wrap: break-word;
     }
+
     ul {
       padding-left: 20px;
       list-style-type: disc;
     }
+
     li {
-      color: #f0e7c0;
+      color: var(--list-text);
       margin-bottom: 5px;
-      word-wrap: break-word; /* Added: Allows long words to break */
-      overflow-wrap: break-word; /* Added: Ensures words break to prevent overflow */
+      word-wrap: break-word;
+      overflow-wrap: break-word;
     }
+
     .block-info {
       display: flex;
       flex-wrap: wrap;
     }
+
     .block-info div {
-      flex: 1 1 45%;
-      margin: 10px;
+      flex: 1 1 100%;
+      margin: 10px 0;
       padding: 10px;
-      border: 1px solid #ddd;
+      border: 1px solid var(--border-color);
       border-radius: 5px;
-      background-color: #2C3E50;
-      word-break: break-all; /* Added: Breaks at any character */
+      background-color: var(--info-bg);
+      word-break: break-all;
     }
+
     .block-info div p {
       margin: 0;
+    }
+
+    #mode-switch {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+       #2196F3;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+    @media (min-width: 768px) {
+      .block-info div {
+        flex: 1 1 45%;
+        margin: 10px;
+      }
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Latest Block Information</h1>
+    <div id="mode-switch">
+      <label class="switch">
+        <input type="checkbox" id="theme-toggle">
+        <span class="slider"></span>
+      </label>
+    </div>
   </header>
   <div id="latest-block">
     <h2>Loading latest block...</h2>
   </div>
 
   <script src="lbscript.js"></script>
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    themeToggle.addEventListener('change', function() {
+      if (this.checked) {
+        body.classList.add('light-mode');
+      } else {
+        body.classList.remove('light-mode');
+      }
+    });
+  </script>
 </body>
 </html>
