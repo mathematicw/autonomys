@@ -45,12 +45,9 @@
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0
+      padding: 0;
       width: 100%;
-      box-sizing: border-box;
-    }
-
-    header {
+      box-sizing: border-box;header {
       background-color: var(--header-bg);
       color: white;
       padding: 1em 0;
@@ -126,7 +123,8 @@
       position: relative;
       display: inline-block;
       width: 60px;
-      height: 34: 0 10px;
+      height: 34px;
+      margin: 0 10px;
     }
 
     .switch input {
@@ -137,11 +135,12 @@
 
     .slider {
       position: absolute;
-      cursor: pointer; 0;
+      cursor: pointer;
+      top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: #ccc;
+      background-cc;
       transition: .4s;
       border-radius: 34px;
     }
@@ -221,12 +220,12 @@
 
     .social-links a {
       color: white;
-      font24px;
+      font-size: 24px;
       margin: 0 10px;
       text-decoration: none;
     }
 
-    #connect-wallet {
+    #connect {
       position: absolute;
       top: 10px;
       right: 20px;
@@ -309,9 +308,9 @@
       <ul>
         <li><a href="https://blocklab.space/lastblock/lb.html">Latest Block</a></li>
         <li>
-          <Community Autonomys</a>
+          <a href="#">Community Autonomys</a>
           <div class="dropdown-content">
-            <a href="https://www.autonomys.xyz/">Official Site</a>
+            <a href="https://wwwxyz/">Official Site</a>
             <a href="https://www.youtube.com/@AutonomysNetwork/videos">Official Youtube Channel</a>
             <a href="https://x.com/NetworkSubspace">Official Twitter</a>
             <a href="https://discord.gg/kKsfKzpq">Official Discord</a>
@@ -322,12 +321,13 @@
             <a href="https://coda.io/d/Autonomys-Ambassadors_dORJu5J0YW4/Ambassador-Bi-Weekly-Meeting-Calendar_su_cK#_ludLe">Meeting Calendar</a>
           </div>
         </li>
-        <li>a href="#">SS Blockchain</a>
+        <li>
+          <a href="#">SS Blockchain</a>
           <div class="dropdown-content">
-            <a href="https://github.com/autonomys/subspace/tree/main">GitHub Autonomys Subspace</a>
-            <a href="https://telemetry.subspace.network/#/0x0c121c75f4ef450f40619e1fca9d1e8e7fbabc42c895bc4790801e85d5a91c34">Telemetry</a>
+            <a href="https://github.com/autonomys/subspace/tree/main">GitHub Autonom
+            <a href="https://telemetry.sub/0x0c121c75f4ef450f40619e1fca9d1e8e7fbabc42c895bc4790801e85d5a91c34">Telemetry</a>
             <a href="https://subspace.subscan.io/">Aggregate Substrate ecological network high-precision Web3 block explorer</a>
-            <a href="#">Polkadot Substrate #img-representation-4</a>
+            <a href="#">Polkadot Substrate</a>
           </div>
         </li>
         <li>
@@ -341,9 +341,9 @@
         <li>
           <a href="#">TestNet</a>
           <div class="dropdown-content">
-            <a href="https://forum.subspace.network/t/gemini-3-incentivized-testnet-rewards-clarification/1968">Gemini 3 Incentivized Testnet rewardsa>
+            <a href="https://forum.subspace.network/t/gemini-3-incentivized-testnet-rewards-clarification/1968">Gemini 3 Incentivized Testnet rewards</a>
             <a href="https://explorer.subspace.network">Astral - Explorer</a>
-            <a href="#">Polkadot #img-representation-5</a>
+            <a href="#">Polkadot</a>
           </div>
         </li>
       </ul>
@@ -351,7 +351,7 @@
   </nav>
 
   <div id="mode-switch">
-    <span>Dark</span>
+    <span>Darkspan>
     <label class="switch">
       <input type="checkbox" id="theme-toggle">
       <span class="slider"></span>
@@ -392,7 +392,8 @@
   <script src="script.js"></script>
   <script>
     const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body;gle.addEventListener('change', function() {
+    const body = document.body;
+    themeToggle.addEventListener('change', function() {
       if (this.checked) {
         body.classList.add('light-mode');
       } else {
@@ -404,7 +405,7 @@
     document.querySelectorAll('.dropdown-toggle').forEach(button => {
       button.addEventListener('click', () => {
         const content = button.nextElementSibling;
-        content.style.display = content.style.display === 'block' ? 'none' : 'block';
+        content.style.style.display === 'block' ? 'none' : 'block';
       });
     });
   </script>
