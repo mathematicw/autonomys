@@ -5,12 +5,12 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #2C3E50; /* Dark blue background color */
+      background-color: #2C3E50;
       margin: 0;
       padding: 0;
     }
     header {
-      background-color: #3558a5; /* Deep orange */
+      background-color: #3558a5;
       color: rgb(182, 176, 214);
       text-align: center;
       padding: 1em 0;
@@ -22,23 +22,28 @@
       border: 1px solid #140086;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      background-color: #34495E; /* Darker blue for block info background */
+      background-color: #34495E;
       color: rgb(19, 20, 77);
     }
     h2, h3 {
-      color: #ECF0F1; /* Light grey for headers */
+      color: #ECF0F1;
+      word-wrap: break-word; /* Added: Allows long words to break */
     }
     p {
-      color: #eedf14; /* Light grey for paragraphs */
+      color: #eedf14;
       font-size: 1.1em;
+      word-wrap: break-word; /* Added: Allows long words to break */
+      overflow-wrap: break-word; /* Added: Ensures words break to prevent overflow */
     }
     ul {
       padding-left: 20px;
       list-style-type: disc;
     }
     li {
-      color: #f0e7c0; /* Light grey for list items */
+      color: #f0e7c0;
       margin-bottom: 5px;
+      word-wrap: break-word; /* Added: Allows long words to break */
+      overflow-wrap: break-word; /* Added: Ensures words break to prevent overflow */
     }
     .block-info {
       display: flex;
@@ -50,7 +55,8 @@
       padding: 10px;
       border: 1px solid #ddd;
       border-radius: 5px;
-      background-color: #2C3E50; /* Dark blue for block info sections */
+      background-color: #2C3E50;
+      word-break: break-all; /* Added: Breaks at any character */
     }
     .block-info div p {
       margin: 0;
