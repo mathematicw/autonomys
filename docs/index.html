@@ -46,8 +46,9 @@
     }
 
     header {
-      background-color: var(--header-color: white;
-      text-align: center;
+      background-color: var(--header-bg);
+      color: white;
+      text;
       padding: 1em 0;
     }
 
@@ -66,7 +67,6 @@
 
     nav ul li {
       margin: 5px;
-      position: relative;
     }
 
     nav ul li a {
@@ -76,37 +76,10 @@
       background-color: var(--button-bg);
       border-radius: 5px;
       transition: background-color 0.3s ease;
-      display: inline-block;
     }
 
     nav ul li a:hover {
       background-color: var(--button-hover);
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: var(--info-bg);
-      min-width: 200px;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-      z-index: 1;
-      border-radius: 5px;
-    }
-
-    .dropdown-content a {
-      color: var(--text-color);
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-      text-align: left;
-    }
-
-    .dropdown-content a:hover {
-      background-color: var(--button-hover);
-    }
-
-    nav ul li:hover .dropdown-content {
-      display: block;
     }
 
     #mode-switch {
@@ -138,7 +111,7 @@
       right: 0;
       bottom: 0;
       background-color: #ccc;
-      transition: .
+      transition: .4s;
       border-radius: 34px;
     }
 
@@ -156,16 +129,21 @@
 
     input:checked + .slider {
       background-color: #2196F3;
-    
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+    #latest-block {
       width: 90%;
       max-width: 1200px;
       margin: 40px auto;
       padding: 20px;
       border: 1px solid var(--block-border);
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      box0 0 10px rgba(0, 0, 0, 0.1);
       background-color: var(--block-bg);
-      word-wrap: break-word;
     }
 
     h1, h2, h3 {
@@ -217,27 +195,9 @@
     }
 
     @media (min-width: 768px) {
-      .block-info div { 1 1 45%;
+      .block-info div {
+        flex: 1 1 45%;
         margin: 10px;
-      }
-    }
-
-    @media (max-width: 600px) {
-      nav ul {
-        flex-direction: column;
-      }
-
-      nav ul li {
-        margin: 5px 0;
-      }
-
-      .dropdown-content {
-        position: static;
-        display: none;
-      }
-
-      nav ul li:hover .dropdown-content {
-        display: block;
       }
     }
   </style>
@@ -253,43 +213,13 @@
     <div class="container">
       <ul>
         <li><a href="https://blocklab.space/lastblock/lb.html">Latest Block</a></li>
-        <li>
-          <a href="#">Community Autonomys</a>
-          <div class="dropdown-content">
-            <a href="https://www.autonomys.xyz/">Official Site</a>
-            <a href="https://coda.io/d/Autonomys-Ambassadors_dORJu5J0YW4/Autonomys-Positioning_su0QN#_lu1Ws">Autonomys Positioning</a>
-            <a href="https://academy.autonomys.xyz/">Academy -Autonomys</a>
-            <a href="https://docs.google.com/document/d/1K1rTvCVwIRSVIQ8ivNhOqoKAaBFowD02DPc_G7UNY0c/edit#heading=h.nhvjmcji7y">Bylaws</a>
-            <a href="https://forum.autonomys.xyz/">Forum</a>
-            <a href="https://coda.io/d/Autonomys-Ambassadors_dORJu5J0YW4/Ambassador-Bi-Weekly-Meeting-Calendar_su_cK#_ludLe">Meeting Calendar</a>
-          </div>
-        </li>
-        <li>
-          <a href="#">SS Blockchain</a>
-          <div class="dropdown-content">
-            <a href="#">#img-representation-2</a>
-            <a href="https://subspace.subscan.io/">Aggregate Substrate ecological network high-precision Web3 explorer</a>
-            <a href="#">Polkadot Substrate #img-representation-3</a>
-            <a href="https://github.com/autonomys/subspace/tree/main">GitHub Autonomys Subspace</a>
-          </div>
-        </li>
-        <li>
-          <a href="#">Tools</a>
-          <div class="dropdown-content">
-            <a href="#">Collab #img-representation-1</a>
-            <a href="https://coda.io/d/Autonomys-Ambassadors_dORJu5J0YW4/CRT-draft_suuBz#_lu0d2">Voting Table</a>
-          </div>
-        </li>
-        <li>
-          <a href="#">TestNet</a>
-          <div class="dropdown-content">
-            <a href="https://forum.subspace.network/t/gemini-3-incentivized-testnet-rewards-clarification/1968">Gemini 3 Incentivized Testnet rewards clarification</a>
-            <a href="https://explorer.subspace.network">Astral - Explorer</a>
-          </div>
-        </li>
-        <li><a href="#">Connect wallet</a></li>
+        <li><a href="#">Menu Item 2</a></li>
+        <li><a href="#">Menu Item 3</a></li>
+        <li><a href="#">Menu Item 4</a></li>
+        <li><a href="#">Menu Item 5</a></li>
+        <li><a href="#">Menu Item 6</a></li>
       </ul>
-    </div>
+    </divnav>
 
   <div id="mode-switch">
     <span>Dark</span>
@@ -312,8 +242,6 @@
       <a href="#" target="_blank"><i class="fab fa-github"></i></a>
       <a href="#" target="_blank"><i class="fab fa-telegram"></i></a>
       <a href="#" target="_blank"><i class="fab fa-discord"></i></a>
-      <a href="https://medium.com/@wilyam.autonomys" target="_blank"><i class="fab fa-medium"></i></a>
-      <a href="https://crowdin.com/profile" target="_blank"><i class="fas fa-language"></i></a>
     </div>
   </footer>
 
